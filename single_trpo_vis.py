@@ -20,7 +20,7 @@ from torch.distributions.categorical import Categorical
 from torch.utils.tensorboard import SummaryWriter
 from gym_wrapper import AutoResetWrapper
 from util import *
-from conjugate_gradient import cg
+#from conjugate_gradient import cg
 
 n_attackers = 4
 
@@ -134,15 +134,17 @@ class AttackerAgent(nn.Module):
 
 if __name__ == "__main__":
     seed = 5
-    PATH = "trpo\\trpo_penalty_back3_cost15_seed_" + str(seed) + "_" + str(n_attackers) + ".pt"
+    #PATH = "trpo/trpo_penalty_back3_cost15_seed_" + str(seed) + "_" + str(n_attackers) + ".pt"
     # PATH = "trpo\\trpo_vulnerable_seed_" + str(seed) + "_" + str(n_attackers) + ".pt"
+    PATH = "saved_models/trpo_penalty_back3_cost20_seed_" + str(seed) + "_" + str(n_attackers) + ".pt"
+	
     
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.backends.cudnn.deterministic = True
 
-    device = torch.device("cuda")
+    device = torch.device("cuda" if torch.cuda.is_available() and args.cuda else "cpu") #torch.device("cuda")
 
     envs = config_env()
 

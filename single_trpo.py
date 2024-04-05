@@ -182,7 +182,7 @@ class AttackerAgent(nn.Module):
 
 if __name__ == "__main__":
     args = parse_args()
-    PATH = "trpo\\trpo_penalty_back3_cost20_seed_" + str(args.seed) + "_" + str(n_attackers) + ".pt"
+    PATH = "saved_models/trpo_penalty_back3_cost20_seed_" + str(args.seed) + "_" + str(n_attackers) + ".pt"
     env_name = "trpo_penalty_back3_cost20_seed_" + str(args.seed) + "_" + str(n_attackers)
     run_name = f"{env_name}__{args.exp_name}__{args.seed}__{int(time.time())}"
 

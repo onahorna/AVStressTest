@@ -187,7 +187,7 @@ class AttackerAgent(nn.Module):
 
 if __name__ == "__main__":
     args = parse_args()
-    PATH = "saved_models\\single_cpo_new_target_seed_" + str(args.seed) + "_" + str(n_attackers)+".pth"
+    PATH = "saved_models/single_cpo_new_target_seed_" + str(args.seed) + "_" + str(n_attackers)+".pth"
     env_name = "highway_centralized_cpo_new_target" + str(n_attackers)
     run_name = f"{env_name}__{args.exp_name}__{args.seed}__{int(time.time())}"
     writer = SummaryWriter(f"runs/single_cpo/{run_name}")

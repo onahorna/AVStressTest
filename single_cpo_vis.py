@@ -94,7 +94,8 @@ class AttackerAgent(nn.Module):
 
 if __name__ == "__main__":
     seed = 5
-    PATH = "saved_models\\single_cpo_newer_target_middle_seed_" + str(seed) + "_" + str(n_attackers)+".pth"
+    #PATH = "saved_models\\single_cpo_newer_target_middle_seed_" + str(seed) + "_" + str(n_attackers)+".pth"
+    PATH = "saved_models/single_cpo_new_target_seed_" + str(seed) + "_" + str(n_attackers)+".pth"
     
 
     # TRY NOT TO MODIFY: seeding
@@ -104,7 +105,7 @@ if __name__ == "__main__":
     torch.manual_seed(seed)
     torch.backends.cudnn.deterministic = True
 
-    device = torch.device("cuda")
+    device =  torch.device("cuda" if torch.cuda.is_available() and args.cuda else "cpu") #torch.device("cuda")
 
     # env setup
     # envs = gym.vector.SyncVectorEnv(

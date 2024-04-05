@@ -20,13 +20,13 @@ from torch.distributions.categorical import Categorical
 from torch.utils.tensorboard import SummaryWriter
 from gym_wrapper import MultiAgentAutoResetWrapper
 from util import *
-from conjugate_gradient import cg
-from cost import cost_function
+#from conjugate_gradient import cg
+#from cost import cost_function
 
 n_attackers = 4
     
 def config_env():
-    env = gym.make(args.env_name, render_mode="rgb_array")	
+    env = gym.make("highway-perfect-target-fast-v0", render_mode="rgb_array")	
     env.configure({"observation": {	
                         "type": "MultiAgentObservation",	
                         "observation_config": {	
@@ -129,10 +129,12 @@ if __name__ == "__main__":
     # folder_path = "saved_models\\macpo_perfect_victim_middle_seed_" + str(seed) + "_" + str(n_attackers) + "_time"
     # folder_path = "thesis_models_new\\matrpo_perfect_victim_surround_penalty_middle_cost20_seed_" + str(seed) + "_" + str(n_attackers)
     # folder_path = "thesis_models_diff_start\\matrpo_perfect_victim_back3_start1_rand_noinvalid_cost15_seed_" + str(seed) + "_" + str(n_attackers)
-    folder_path = "thesis_models_diff_start2\\matrpo_perfect_victim_vulnerable_start1_rand_cost5_seed_" + str(seed) + "_" + str(n_attackers)
+    #folder_path = "thesis_models_diff_start2\\matrpo_perfect_victim_vulnerable_start1_rand_cost5_seed_" + str(seed) + "_" + str(n_attackers)
+    #folder_path = "saved_models/macpo_new_vulnerable_target_seed_" + str(seed) + "_" + str(n_attackers)
+    folder_path = "saved_models/matrpo_newer_target_seed_" + str(seed) + "_" + str(n_attackers)
 
     for i in range(n_attackers):
-        PATHS.append(folder_path +"\\agent" + str(i) + ".pt")
+        PATHS.append(folder_path +"/agent" + str(i) + ".pt")
     
 
     # TRY NOT TO MODIFY: seeding
@@ -142,7 +144,8 @@ if __name__ == "__main__":
     torch.manual_seed(seed)
     torch.backends.cudnn.deterministic = True
 
-    device = torch.device("cuda")
+    device = torch.device("cuda" if torch.cuda.is_available() and args.cuda else "cpu") #torch.device("cuda")
+
     envs = config_env()
     agents = []
     for i in range(n_attackers):

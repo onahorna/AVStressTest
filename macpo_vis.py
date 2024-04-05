@@ -20,8 +20,8 @@ from torch.distributions.categorical import Categorical
 from torch.utils.tensorboard import SummaryWriter
 from gym_wrapper import MultiAgentAutoResetWrapper
 from util import *
-from conjugate_gradient import cg
-from cost import cost_function
+#from conjugate_gradient import cg
+#from cost import cost_function
 
 n_attackers = 4
     
@@ -123,23 +123,14 @@ class AttackerAgent(nn.Module):
 if __name__ == "__main__":
     seed = 5
     PATHS = []
-    # folder_path = "saved_models\\macpo_perfect_victim_middle_seed_" + str(seed) + "_" + str(n_attackers)
-    # folder_path = "saved_models\\macpo_perfect_victim_middle_seed_" + str(seed) + "_" + str(n_attackers) + "_100k"
-    # folder_path = "saved_models\\macpo_perfect_victim_middle_seed_" + str(seed) + "_" + str(n_attackers) + "_time"
-    
-    # folder_path = "thesis_models_new\\macpo_one_critic_perfect_victim_middle_test_seed_" + str(seed) + "_" + str(n_attackers)
-    # folder_path = "thesis_models_new\\macpo_one_critic_perfect_victim_vulnerable_combined_middle_seed_" + str(seed) + "_" + str(n_attackers)
-    # folder_path = "thesis_models_new\\macpo_one_critic_perfect_victim_vulnerable_combined_middle_seed_5"  + "_" + str(n_attackers)
-    # folder_path = "thesis_models_new\\macpo_one_critic_perfect_victim_back3_middle_cost20_seed_" + str(seed) + "_" + str(n_attackers)
-    folder_path = "thesis_models_diff_start\\macpo_one_critic_perfect_victim_vulnerable_start1_rand_cost20_seed_5"  + "_" + str(n_attackers)
-    # folder_path = "thesis_models_diff_start2\\macpo_one_critic_perfect_victim_vulnerable_start1_rand_cost5_seed_5"  + "_" + str(n_attackers)
+    folder_path = "saved_models/macpo_new_vulnerable_target_seed_" + str(seed) + "_" + str(n_attackers)
     
 
     for i in range(n_attackers):
-        PATHS.append(folder_path +"\\agent" + str(i) + ".pt")
+        PATHS.append(folder_path +"/agent" + str(i) + ".pt")
     
 
-    device = torch.device("cuda")
+    device = torch.device("cpu")
 
    
     envs = config_env()

@@ -21,7 +21,7 @@ from gym_wrapper import MultiAgentAutoResetWrapper
 from util import *
 
 
-n_attackers = 4
+n_attackers = 4gym.
 EPS = 1e-8
 
 def parse_args():
@@ -166,7 +166,7 @@ class AttackerAgent(nn.Module):
     def get_action_and_value(self, x, centralized_x,  action=None):
         x = x.flatten(start_dim=-2)
         centralized_x = centralized_x.flatten(start_dim=-2)
-        logits = self.actor(x)
+        logits = self.actor(x)gym.
     
         dist = Categorical(logits=logits)	
         if action is None:	
@@ -192,11 +192,11 @@ class AttackerAgent(nn.Module):
 if __name__ == "__main__":
     args = parse_args()
     PATHS = []
-    folder_path = "saved_models\\macpo_new_vulnerable_target_seed_" + str(args.seed) + "_" + str(n_attackers)
+    folder_path = "saved_models/macpo_new_vulnerable_target_seed_" + str(args.seed) + "_" + str(n_attackers)
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
     for i in range(n_attackers):
-        PATHS.append(folder_path +"\\agent" + str(i) + ".pt")
+        PATHS.append(folder_path +"/agent" + str(i) + ".pt")
     env_name = "highway_custom_macpo_new_vulnerable_target_" + str(n_attackers)
     run_name = f"{env_name}__{args.exp_name}__{args.seed}__{int(time.time())}"
     writer = SummaryWriter(f"runs/macpo/{run_name}")
