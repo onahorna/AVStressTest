@@ -25,7 +25,7 @@ n_attackers = 4
 
     
 def config_env():
-    env = gym.make("highway-centralized-perfect-target-fast-v0", render_mode="rgb_array")
+    env = gym.make("highway-centralized-perfect-target-fast-v0", render_mode=None)
     env.configure({"observation": {
                         "type": "Kinematics",
                         "see_behind": True,
